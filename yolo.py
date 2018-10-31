@@ -65,7 +65,6 @@ while True:
 
     resized_image = cv2.resize(input_image,  (int(input_image.shape[1]/2), int(input_image.shape[0]/2)))
     cv2.imshow("CAMERA IMAGE", resized_image)   
-    #cv2.imshow("CAMERA IMAGE", input_image) 
         
     ch = 0xFF & cv2.waitKey(1)
     if ch == 27:

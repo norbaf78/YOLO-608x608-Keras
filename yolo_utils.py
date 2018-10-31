@@ -61,7 +61,6 @@ def draw_boxes(image, out_scores, out_boxes, out_classes, class_names, colors):
         predicted_class = class_names[c]
         box = out_boxes[i]
         score = out_scores[i]
-        print("Variable i {}, Variable c {}",i,c)
 
         label = '{} {:.2f}'.format(predicted_class, score)
 
@@ -72,4 +71,4 @@ def draw_boxes(image, out_scores, out_boxes, out_classes, class_names, colors):
         right = min(image.shape[1], np.floor(right + 0.5).astype('int32'))
         print(label, (left, top), (right, bottom))
         cv2.rectangle(image, (left + i, top + i), (right - i, bottom - i), (255,0,0), 3) 
-        cv2.putText(image, label, (left,top + 1), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (255,255,255), 2, cv2.LINE_AA)
+        cv2.putText(image, label, (left,top + 1), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255), 2, cv2.LINE_AA)
