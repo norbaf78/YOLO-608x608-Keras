@@ -1,8 +1,8 @@
 # import the needed modules
 import os
-#from matplotlib.pyplot import imshow
-#import scipy.io
-#import scipy.misc
+from matplotlib.pyplot import imshow
+import scipy.io
+import scipy.misc
 import numpy as np
 #from PIL import Image
 import cv2
@@ -20,6 +20,7 @@ from yad2k.models.keras_yolo import yolo_head, yolo_eval
 
 cap=cv2.VideoCapture("http://root:progtrl01@192.168.208.55/mjpg/1/video.mjpg")
 _,input_image=cap.read() # acquire a new image
+#cv2.imshow("CAMERA IMAGE", input_image) 
 height, width, _ = input_image.shape 
 width = np.array(width, dtype=float)
 height = np.array(height, dtype=float)
@@ -48,7 +49,6 @@ boxes, scores, classes = yolo_eval(yolo_outputs, image_shape)
 # Initiate a session
 sess = K.get_session()
 
-
 while True:
     _,input_image=cap.read() # acquire a new image
     
@@ -60,7 +60,7 @@ while True:
     out_scores, out_boxes, out_classes = sess.run([scores, boxes, classes],feed_dict={yolo_model.input:image_data,K.learning_phase(): 0})
 
     b = datetime.datetime.now()
-    print("Elaboration time:{}",b-a)
+    print("Elaboration time: ",b-a)
 
     #Print the results
     print('Found {} boxes in image '.format(len(out_boxes)))
