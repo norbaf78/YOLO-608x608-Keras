@@ -1,8 +1,8 @@
 # import the needed modules
 import os
-#from matplotlib.pyplot import imshow
-#import scipy.io
-#import scipy.misc
+from matplotlib.pyplot import imshow
+import scipy.io
+import scipy.misc
 import numpy as np
 #from PIL import Image
 import cv2
@@ -21,6 +21,7 @@ from yad2k.models.keras_yolo import yolo_head, yolo_eval
 cap=cv2.VideoCapture("http://root:progtrl01@192.168.208.55/mjpg/1/video.mjpg")
 #cap=cv2.VideoCapture("http://admin:admin@192.168.208.55/jpg/image.jpg?size=3")
 _,input_image=cap.read() # acquire a new image
+#cv2.imshow("CAMERA IMAGE", input_image) 
 height, width, _ = input_image.shape 
 width = np.array(width, dtype=float)
 height = np.array(height, dtype=float)
@@ -48,7 +49,6 @@ boxes, scores, classes = yolo_eval(yolo_outputs, image_shape)
 
 # Initiate a session
 sess = K.get_session()
-
 
 while True:
     _,input_image=cap.read() # acquire a new image
