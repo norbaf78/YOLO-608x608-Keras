@@ -70,5 +70,10 @@ def draw_boxes(image, out_scores, out_boxes, out_classes, class_names, colors):
         bottom = min(image.shape[0], np.floor(bottom + 0.5).astype('int32'))
         right = min(image.shape[1], np.floor(right + 0.5).astype('int32'))
         print(label, (left, top), (right, bottom))
-        cv2.rectangle(image, (left + i, top + i), (right - i, bottom - i), (255,0,0), 3) 
-        cv2.putText(image, label, (left,top + 1), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255), 2, cv2.LINE_AA)
+        if(predicted_class == "person"):
+            cv2.rectangle(image, (left + i, top + i), (right - i, bottom - i), (255,255,255), 5)
+            cv2.putText(image, label, (left,top + 1), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255), 2, cv2.LINE_AA)
+        else:
+            cv2.rectangle(image, (left + i, top + i), (right - i, bottom - i), (255,0,0), 3)
+            cv2.putText(image, label, (left,top + 1), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,0), 2, cv2.LINE_AA)
+        

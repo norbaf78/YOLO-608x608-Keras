@@ -19,6 +19,7 @@ from yad2k.models.keras_yolo import yolo_head, yolo_eval
 
 
 cap=cv2.VideoCapture("http://root:progtrl01@192.168.208.55/mjpg/1/video.mjpg")
+#cap=cv2.VideoCapture("http://admin:admin@192.168.208.55/jpg/image.jpg?size=3")
 _,input_image=cap.read() # acquire a new image
 height, width, _ = input_image.shape 
 width = np.array(width, dtype=float)
@@ -60,7 +61,7 @@ while True:
     out_scores, out_boxes, out_classes = sess.run([scores, boxes, classes],feed_dict={yolo_model.input:image_data,K.learning_phase(): 0})
 
     b = datetime.datetime.now()
-    print("Elaboration time:{}",b-a)
+    print("Elaboration time: ",b-a)
 
     #Print the results
     print('Found {} boxes in image '.format(len(out_boxes)))
