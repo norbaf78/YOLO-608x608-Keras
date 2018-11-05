@@ -1,11 +1,12 @@
 # import the needed modules
 import os
 #from matplotlib.pyplot import imshow
-import scipy.io
+#import scipy.io
 #import scipy.misc
 import numpy as np
 #from PIL import Image
 import cv2
+import datetime
 
 from keras import backend as K
 from keras.models import load_model
@@ -50,11 +51,16 @@ sess = K.get_session()
 
 while True:
     _,input_image=cap.read() # acquire a new image
+    
+    a = datetime.datetime.now()
+
     #Preprocess the input image before feeding into the convolutional network
     image_data = preprocess_image_new(input_image, model_image_size = (608, 608))
-
     #Run the session
     out_scores, out_boxes, out_classes = sess.run([scores, boxes, classes],feed_dict={yolo_model.input:image_data,K.learning_phase(): 0})
+
+    b = datetime.datetime.now()
+    print("Elaboration time:{}",b-a)
 
     #Print the results
     print('Found {} boxes in image '.format(len(out_boxes)))
