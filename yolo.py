@@ -18,7 +18,7 @@ from yolo_utils import read_classes, read_anchors, generate_colors, preprocess_i
 from yad2k.models.keras_yolo import yolo_head, yolo_eval
 
 
-cap=cv2.VideoCapture("http://root:progtrl01@192.168.208.55/mjpg/1/video.mjpg")
+cap=cv2.VideoCapture("http://root:progtrl01@192.168.208.200/mjpg/1/video.mjpg")
 #cap=cv2.VideoCapture("http://admin:admin@192.168.208.55/jpg/image.jpg?size=3")
 _,input_image=cap.read() # acquire a new image
 #cv2.imshow("CAMERA IMAGE", input_image) 
